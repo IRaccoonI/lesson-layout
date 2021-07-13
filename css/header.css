@@ -1,0 +1,38 @@
+#header {
+  height: 64px;
+  line-height: 64px;
+  border-bottom: 1px solid #dde0e6;
+}
+
+#header > * {
+  height: 100%;
+  padding: 0 22px;
+}
+
+#header .left-content {
+  float: left;
+  transition: background-color 0.2s linear;
+  transition: color 0.2s linear;
+}
+
+#header .left-content:hover {
+  background-color: #eee;
+  color: var(--hover-text-color);
+}
+
+#header .left-content span {
+  margin-left: 22px;
+}
+
+#header .right-content {
+  float: right;
+  color: var(--ico-color);
+}
+
+#header .right-content .ico:hover {
+  color: var(--hover-text-color);
+}
+
+#header .right-content .bell {
+  margin-right: 20px;
+}
