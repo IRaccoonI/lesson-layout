@@ -26,7 +26,6 @@ document.querySelectorAll(".show-hide-elem").forEach((elem) => {
   let header_height = elem.querySelector(".header").clientHeight;
   let info_arrow = elem.querySelector(".header .arrow");
   let elem_height = undefined;
-  console.log(elem.clientHeight);
   elem.querySelector(".show-hide-click").addEventListener("click", (info) => {
     if (elem_height == undefined) {
       elem_height = elem.clientHeight;

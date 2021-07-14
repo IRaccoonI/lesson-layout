@@ -14,7 +14,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   color: #2d2f33;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   overflow-y: hidden;
   background-color: #f4f7fb;
 }
@@ -30,4 +30,13 @@ body {
 
 .turn {
   transform: scaleY(-1);
+}
+
+.show-hide-elem .arrow {
+  transition: color 0.2s linear;
+  transition: transform 0.2s linear;
+}
+
+.show-hide-elem:hover .arrow {
+  color: var(--hover-text-color);
 }
