@@ -2,7 +2,8 @@
 
 :root {
   --hover-text-color: #2375e1;
-  --ico-color: #6e7178;
+  --gray-color: #6e7178;
+  --gray-border: #dde0e6;
 }
 
 html,
@@ -13,9 +14,20 @@ body {
   font-weight: 400;
   font-size: 16px;
   color: #2d2f33;
+  /* overflow-x: hidden; */
+  overflow-y: hidden;
+  background-color: #f4f7fb;
 }
 
 .ico {
   display: inline-block;
   transition: color 0.2s linear;
+}
+
+.mirrored {
+  transform: scaleX(-1);
+}
+
+.turn {
+  transform: scaleY(-1);
 }

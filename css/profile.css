@@ -1,0 +1,339 @@
+/* header */
+
+#profile-header {
+  height: 48px;
+  line-height: 48px;
+  padding-left: 32px;
+  padding-right: 21.5px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+  color: var(--gray-color);
+  background-color: #fff;
+}
+
+#profile-header .left-content {
+  float: left;
+}
+
+#profile-header .left-content > *:not(:first-of-type) {
+  margin-left: 18px;
+}
+
+#profile-header .right-content {
+  float: right;
+}
+
+#profile-header .right-content > *:not(:last-of-type) {
+  margin-right: 16px;
+}
+
+#profile-header .left-content > *,
+#profile-header .right-content > * {
+  float: left;
+}
+
+#profile-header .note,
+#profile-header .settings {
+  transition: color 0.2s linear;
+  cursor: pointer;
+}
+
+#profile-header .note:hover {
+  color: var(--hover-text-color);
+}
+
+#profile-header .note.active {
+  color: var(--hover-text-color);
+  position: relative;
+}
+
+#profile-header .note.active::after {
+  content: "";
+  height: 3px;
+  width: 100%;
+  background-color: var(--hover-text-color);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+#profile-header .settings > *:last-of-type {
+  font-size: 0.7em;
+  margin-left: 4px;
+}
+
+#profile-header .settings > *:first-of-type {
+  transition: transform 0.2s linear;
+}
+
+#profile-header .settings:hover {
+  color: #ffa500;
+}
+
+#profile-header .settings:hover > *:first-of-type {
+  transform: rotate(90deg);
+}
+
+/* profile-main */
+
+#profile-main {
+  position: relative;
+  height: calc(100vh - 113px);
+  transition: left 0.5s linear;
+}
+
+#profile-main > * {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding-top: 24px;
+  overflow-y: auto;
+}
+
+#profile-main > *:nth-of-type(1) {
+  left: 0;
+}
+#profile-main > *:nth-of-type(2) {
+  left: 100%;
+}
+#profile-main > *:nth-of-type(3) {
+  left: 200%;
+}
+
+#profile-activity {
+  display: flex;
+}
+
+#profile-content {
+  flex: 1;
+  margin-left: 32px;
+  margin-right: 24px;
+}
+
+#profile-content > .elem {
+  border: 1px solid var(--gray-border);
+  padding: 0 16px;
+  background-color: #fff;
+}
+
+#profile-content > .elem:not(:first-of-type) {
+  margin-top: 24px;
+}
+
+#profile-content > .elem .header {
+  height: 52px;
+  line-height: 52px;
+}
+
+#profile-content > .elem .header .title {
+  float: left;
+}
+
+#profile-content > .elem .header .info {
+  float: right;
+  cursor: pointer;
+}
+
+#profile-content > .elem .header .info:hover .arrow {
+  color: var(--hover-text-color);
+  transition: transform 0.4s linear;
+}
+
+#profile-content > .elem .header .info > * {
+  float: left;
+}
+
+#profile-content > .elem .header .info > *:not(:last-child) {
+  margin-right: 16px;
+}
+
+#profile-content > .elem .header .info .fa-check-circle {
+  color: #06ac3e;
+}
+
+#profile-content > .elem .content .preview-img img {
+  width: 100%;
+}
+
+#profile-content > .elem .content .main-comment {
+  margin-top: 12px;
+}
+
+#profile-content > .elem .content .main-comment .sender {
+  font-size: 0.87em;
+}
+
+#profile-content > .elem .content .main-comment .sender .ico {
+  margin-right: 4px;
+  font-size: 1.2em;
+}
+
+#profile-content > .elem .content .main-comment .sender .nickname {
+  color: var(--hover-text-color);
+}
+#profile-content > .elem .content .main-comment .text {
+  font-size: 0.87em;
+  margin-top: 16px;
+  padding-left: 16px;
+  border-left: 2px solid #c4c4c4;
+}
+
+#profile-content > .elem .content .main-comment .text .ps {
+  display: block;
+  margin-top: 8px;
+  color: var(--gray-color);
+}
+
+#profile-content > .elem .content .main-comment .statistics {
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+#profile-content > .elem .content .main-comment .statistics .wrapper {
+  display: inline-block;
+}
+
+#profile-content
+  > .elem
+  .content
+  .main-comment
+  .statistics
+  .wrapper:last-of-type {
+  margin-left: 10px;
+}
+
+#profile-content
+  > .elem
+  .content
+  .main-comment
+  .statistics
+  .wrapper
+  > *:first-of-type {
+  margin-right: 3px;
+}
+
+/* profile-aside */
+
+#profile-aside {
+  flex: none;
+  width: 1px;
+  width: 352px;
+  margin-right: 32px;
+}
+
+#profile-aside .profile {
+  padding-top: 32px;
+  padding-bottom: 36px;
+  border: 1px solid var(--gray-border);
+  background-color: #fff;
+}
+
+#profile-aside .profile .avatar {
+  height: 144px;
+  width: 144px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin: auto;
+}
+
+#profile-aside .profile .avatar img {
+  height: 100%;
+}
+
+#profile-aside .profile .user-name,
+#profile-aside .profile .user-role,
+#profile-aside .profile .social {
+  text-align: center;
+}
+
+#profile-aside .profile .user-name {
+  margin-top: 16px;
+  font-size: 1.12em;
+  color: black;
+}
+
+#profile-aside .profile .user-role {
+  margin-top: 8px;
+  color: #a1a5ae;
+  font-weight: 400;
+  font-size: 0.87em;
+}
+
+#profile-aside .profile .social {
+  margin-top: 20px;
+  color: #6e7178;
+}
+
+#profile-aside .navigation {
+  margin-top: 24px;
+  background-color: #fff;
+  border: 1px solid var(--gray-border);
+}
+
+#profile-aside .navigation > * {
+  padding: 0 24px;
+}
+
+#profile-aside .navigation .header {
+  height: 48px;
+  line-height: 48px;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+#profile-aside .navigation .header .left-content {
+  float: left;
+}
+#profile-aside .navigation .header .right-content {
+  float: right;
+}
+
+#profile-aside .navigation .header:hover .arrow {
+  color: var(--hover-text-color);
+}
+
+#profile-aside .navigation .item {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  height: 20px;
+  line-height: 20px;
+  /* display: flex; */
+}
+#profile-aside .navigation .item .left-content {
+  float: left;
+}
+
+#profile-aside .navigation .item .right-content {
+  float: right;
+}
+
+#profile-aside .navigation .item .ico {
+  font-size: 1.13em;
+  margin-right: 12px;
+}
+
+#profile-aside .navigation .sep {
+  height: 1px;
+  background-color: var(--gray-border);
+}
+
+#profile-aside .navigation .item .green-circled,
+#profile-aside .navigation .item .hot-circled,
+#profile-aside .navigation .item .gray-text {
+  text-align: right;
+  padding: 0 4px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.8em;
+}
+#profile-aside .navigation .item .green-circled {
+  background-color: #26a69a;
+}
+#profile-aside .navigation .item .gray-text {
+  color: var(--gray-color);
+}
+
+.show-hide-elem {
+  transition: height 0.4s linear;
+  overflow-y: hidden;
+}
