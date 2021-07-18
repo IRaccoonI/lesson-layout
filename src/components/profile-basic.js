@@ -1,3 +1,5 @@
+document.write("Hello");
+
 // nav slider
 let profileNavEls = document.querySelectorAll(
   "#profile-header .left-content > *"
@@ -23,20 +25,20 @@ profileNavEls.forEach((el, ind) => {
 
 // show/hide activity element
 document.querySelectorAll(".show-hide-elem").forEach((elem) => {
-  let header_height = elem.querySelector(".header").clientHeight;
-  let info_arrow = elem.querySelector(".header .arrow");
-  let elem_height = undefined;
+  let headerHeight = elem.querySelector(".header").clientHeight;
+  let infoArrow = elem.querySelector(".header .arrow");
+  let elemHeight = undefined;
   elem.querySelector(".show-hide-click").addEventListener("click", (info) => {
-    if (elem_height == undefined) {
-      elem_height = elem.clientHeight;
-      elem.style.height = elem_height + "px";
+    if (elemHeight == undefined) {
+      elemHeight = elem.clientHeight;
+      elem.style.height = elemHeight + "px";
     }
-    if (elem.clientHeight != header_height) {
-      elem.style.height = header_height + "px";
-      info_arrow.classList.add("turn");
+    if (elem.clientHeight != headerHeight) {
+      elem.style.height = headerHeight + "px";
+      infoArrow.classList.add("turn");
     } else {
-      elem.style.height = elem_height + "px";
-      info_arrow.classList.remove("turn");
+      elem.style.height = elemHeight + "px";
+      infoArrow.classList.remove("turn");
     }
   });
 });
