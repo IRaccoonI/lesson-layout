@@ -8,6 +8,7 @@ import {
   registerHeader,
   registerShowHide,
   registerTimer,
+  registerMaps,
 } from "./scripts/profile";
 
 // -----
@@ -53,7 +54,10 @@ let openDocumentDateTime = Date.now();
 let allPagesNames = ["activity", "map", "timer"];
 
 let curPageName = getUrlQueryParam("page");
-let loadProfilePage = (name) => {
+let loadProfilePage = (name, force = false) => {
+  if (curPageName == name && !force) {
+    return;
+  }
   curPageName = name;
   changeUrlQueryParam("page", name);
   if (name == "activity") {
@@ -64,10 +68,12 @@ let loadProfilePage = (name) => {
       htmlProfileActivity1;
   } else if (name == "map") {
     document.getElementById("profile-map").innerHTML = htmlProfileMap;
+    registerMaps(document);
   } else if (name == "timer") {
     document.getElementById("profile-timer").innerHTML = htmlProfileTimer;
     registerTimer(document, openDocumentDateTime);
   }
+
   registerShowHide(document);
   document
     .querySelectorAll("div[targetUrlQuery]")
@@ -96,7 +102,7 @@ if (curPageName == undefined) {
   curPageName = "activity";
 }
 
-loadProfilePage(curPageName);
+loadProfilePage(curPageName, true);
 
 document.querySelectorAll("div[targetUrlQuery]").forEach((el) => {
   let target = el.getAttribute("targetUrlQuery");
