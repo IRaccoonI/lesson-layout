@@ -11,6 +11,8 @@ import {
   registerMaps,
 } from "./scripts/profile";
 
+const axios = require("axios");
+
 // -----
 // -----
 // base
@@ -61,6 +63,7 @@ let loadProfilePage = (name, force = false) => {
   curPageName = name;
   changeUrlQueryParam("page", name);
   if (name == "activity") {
+    // const response = await axios.get(process.env.HOST)
     document.getElementById("profile-activity").innerHTML = htmlProfileActivity;
     document.getElementById("profile-activity-content").innerHTML +=
       htmlProfileActivity0;
