@@ -1,0 +1,42 @@
+@import "./utilities/variables"
+
+#header
+  height: 64px
+  line-height: 64px
+  border-bottom: 1px solid $gray-border
+  position: relative
+  z-index: 999
+
+  &::before
+    content: ""
+    position: absolute
+    height: 100%
+    width: 100%
+    top: 0
+    left: 0
+    background-color: #fff
+    z-index: -1
+
+  > *
+    height: 100%
+    padding: 0 22px
+
+  .left-content
+    transition: background-color 0.2s linear, color 0.2s linear
+
+    &:hover
+      background-color: #eee
+      color: $hover-text-color
+
+    span
+      margin-left: 22px
+
+  .right-content
+    color: $gray-color
+
+    .ico
+      &:hover
+        color: $hover-text-color
+
+      &:last-of-type
+        margin-left: 20px
