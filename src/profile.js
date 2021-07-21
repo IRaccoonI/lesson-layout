@@ -11,6 +11,8 @@ import {
   registerMaps,
 } from "./scripts/profile";
 
+import env from "../.env";
+
 const axios = require("axios");
 
 // -----
@@ -36,13 +38,6 @@ document.getElementById("content").innerHTML = htmlProfileBasic;
 import htmlProfileBasic from "./templates/profile/basic.html";
 import htmlProfileHeader from "./templates/profile/header.html";
 
-import htmlProfileActivity from "./templates/profile/activity.html";
-import htmlProfileMap from "./templates/profile/map.html";
-import htmlProfileTimer from "./templates/profile/timer.html";
-
-import htmlProfileActivity0 from "./templates/profile/activity-items/0.html";
-import htmlProfileActivity1 from "./templates/profile/activity-items/1.html";
-
 document.getElementById("profile-header").innerHTML = htmlProfileHeader;
 
 // ------
@@ -50,34 +45,53 @@ document.getElementById("profile-header").innerHTML = htmlProfileHeader;
 // global
 // ------
 // ------
-
 let openDocumentDateTime = Date.now();
-
+let templatesProfileUrl = `http://${env.HOST}:${env.PORT}/templates/profile`;
 let allPagesNames = ["activity", "map", "timer"];
 
+// axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
+
 let curPageName = getUrlQueryParam("page");
-let loadProfilePage = (name, force = false) => {
+let loadProfilePage = async (name, force = false) => {
   if (curPageName == name && !force) {
     return;
   }
   curPageName = name;
   changeUrlQueryParam("page", name);
   if (name == "activity") {
-    // const response = await axios.get(process.env.HOST)
-    document.getElementById("profile-activity").innerHTML = htmlProfileActivity;
-    document.getElementById("profile-activity-content").innerHTML +=
-      htmlProfileActivity0;
-    document.getElementById("profile-activity-content").innerHTML +=
-      htmlProfileActivity1;
+    // load
+    let acitvityPromise = axios.get(templatesProfileUrl + "/activity.html");
+
+    let acitvityItemPromises = [];
+    for (var i = 0; i < 2; i++) {
+      acitvityItemPromises.push(
+        axios.get(templatesProfileUrl + `/activity-items/${i}.html`)
+      );
+    }
+
+    // insert
+    document.getElementById("profile-activity").innerHTML = (
+      await acitvityPromise
+    ).data;
+    let contentEl = document.getElementById("profile-activity-content");
+    for (var i = 0; i < 2; i++) {
+      contentEl.innerHTML += (await acitvityItemPromises[i]).data;
+    }
   } else if (name == "map") {
-    document.getElementById("profile-map").innerHTML = htmlProfileMap;
+    let mapPromise = axios.get(templatesProfileUrl + "/map.html");
+    document.getElementById("profile-map").innerHTML = (await mapPromise).data;
     registerMaps(document);
   } else if (name == "timer") {
-    document.getElementById("profile-timer").innerHTML = htmlProfileTimer;
+    let timerPromise = axios.get(templatesProfileUrl + "/timer.html");
+    document.getElementById("profile-timer").innerHTML = (
+      await timerPromise
+    ).data;
     registerTimer(document, openDocumentDateTime);
   }
 
   registerShowHide(document);
+
+  // toggle active class in profile header
   document
     .querySelectorAll("div[targetUrlQuery]")
     .forEach((el) => el.classList.remove("active"));
@@ -100,13 +114,14 @@ let unloadProfilePages = (exceptName = "") => {
 // ----
 // ----
 
+// load default page
 if (curPageName == undefined) {
   changeUrlQueryParam("page", "activity");
   curPageName = "activity";
 }
-
 loadProfilePage(curPageName, true);
 
+// add listeners for profile header
 document.querySelectorAll("div[targetUrlQuery]").forEach((el) => {
   let target = el.getAttribute("targetUrlQuery");
   el.addEventListener("click", () => {
